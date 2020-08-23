@@ -5,7 +5,7 @@
       <div class="input-field">
         <input
           id="email"
-          type="email"
+          type="text"
           v-model.trim="email"
           :class="{
             invalid:
@@ -113,7 +113,7 @@ export default {
     agree: { checked: v => v }
   },
   methods: {
-    onSubmit() {
+    async onSubmit() {
       if (this.$v.$invalid) {
         this.$v.$touch();
         return;
@@ -123,8 +123,11 @@ export default {
         password: this.password,
         name: this.name
       };
-      console.log("Register ->", formDate);
-      this.$router.push("/");
+      try {
+        await this.$store.dispatch("register", formDate);
+        this.$router.push("/");
+        // eslint-disable-next-line no-empty
+      } catch (e) {}
     }
   }
 };

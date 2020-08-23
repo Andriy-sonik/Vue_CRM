@@ -73,6 +73,7 @@
 
 <script>
 import { email, required, minLength } from "vuelidate/lib/validators";
+import messages from "../utils/messages";
 export default {
   name: "Login",
   data() {
@@ -86,7 +87,7 @@ export default {
     password: { required, minLength: minLength(8) }
   },
   methods: {
-    onSubmit() {
+    onSubmit: async function () {
       if (this.$v.$invalid) {
         this.$v.$touch();
         return;
@@ -95,8 +96,17 @@ export default {
         email: this.email,
         password: this.password
       };
-      console.log('login', formDate);
-      this.$router.push("/");
+      try {
+        await this.$store.dispatch("login", formDate);
+        this.$router.push("/");
+        // eslint-disable-next-line no-empty
+      } catch (e) {
+      }
+    }
+  },
+  mounted() {
+    if (messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message]);
     }
   }
 };
