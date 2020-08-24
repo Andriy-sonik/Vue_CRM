@@ -23,7 +23,7 @@ export default {
           .database()
           .ref(`/users/${uid}/info`)
           .set({
-            bill: 100,
+            bill: 10000,
             name: payload.name
           });
       } catch (e) {
@@ -36,8 +36,9 @@ export default {
       const user = firebase.auth().currentUser;
       return user ? user.uid : null;
     },
-    async logout() {
+    async logout({ commit }) {
       await firebase.auth().signOut();
+      commit("CLEAR_INFO");
     }
   }
 };
