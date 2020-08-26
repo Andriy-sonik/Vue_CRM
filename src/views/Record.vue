@@ -140,7 +140,7 @@ export default {
               : this.info.bill - this.amount;
           await this.$store.dispatch("updateInfo", { bill });
           this.$message("Запісь успішно створена");
-          this.$v.reset();
+          this.$v.$reset();
           this.amount = 1;
           this.description = "";
           // eslint-disable-next-line no-empty

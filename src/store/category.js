@@ -45,6 +45,23 @@ export default {
         commit("SET_ERROR", e);
         throw e;
       }
+    },
+    async fetchCategoriesById({ commit, dispatch }, id) {
+      try {
+        const uid = await dispatch("getUid");
+        const category =
+          (
+            await firebase
+              .database()
+              .ref(`/users/${uid}/categories`)
+              .child(id)
+              .once("value")
+          ).val() || {};
+        return { ...category, id: id };
+      } catch (e) {
+        commit("SET_ERROR", e);
+        throw e;
+      }
     }
   }
 };
