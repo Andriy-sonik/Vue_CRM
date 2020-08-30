@@ -2,7 +2,7 @@
   <div class="col s12 m6">
     <div>
       <div class="page-subtitle">
-        <h4>Редактировать</h4>
+        <h4>{{ "edit" | localize }}</h4>
       </div>
 
       <form @submit.prevent="onSubmit">
@@ -12,7 +12,7 @@
               {{ c.title }}
             </option>
           </select>
-          <label>Выберите категорию</label>
+          <label>{{ "select_category" | localize }}</label>
         </div>
 
         <div class="input-field">
@@ -22,12 +22,12 @@
             v-model.trim="title"
             :class="{ invalid: $v.title.$dirty && !$v.title.required }"
           />
-          <label for="name">Название</label>
+          <label for="name">{{ "name_category" | localize }}</label>
           <span
             class="helper-text invalid"
             v-if="$v.title.$dirty && !$v.title.required"
           >
-            Введіть назву для категорії
+            {{ "enter_nam_category" | localize }}
           </span>
         </div>
 
@@ -38,17 +38,17 @@
             v-model.number="limit"
             :class="{ invalid: $v.limit.$dirty && !$v.limit.minValue }"
           />
-          <label for="limit">Лимит</label>
+          <label for="limit">{{ "limit" | localize }}</label>
           <span
             class="helper-text invalid"
             v-if="$v.limit.$dirty && !$v.limit.minValue"
           >
-            Мінімальна величина {{ $v.limit.$params.minValue.min }}
+            {{ "min_val" | localize }} {{ $v.limit.$params.minValue.min }}
           </span>
         </div>
 
         <button class="btn waves-effect waves-light" type="submit">
-          Обновить
+          {{ "update" | localize }}
           <i class="material-icons right">send</i>
         </button>
       </form>
@@ -91,8 +91,8 @@ export default {
           limit: this.limit
         };
         await this.$store.dispatch("updateCategory", categoryDate);
-        this.$message('Категорія успішно оновлена')
-        this.$emit('updated', categoryDate)
+        this.$message("Категорія успішно оновлена");
+        this.$emit("updated", categoryDate);
         // eslint-disable-next-line no-empty
       } catch (e) {}
     }
