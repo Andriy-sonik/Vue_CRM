@@ -52,5 +52,6 @@
   "record_with": "Запис з",
   "this_not_found": "не найдено",
   "agree_rules": "С правилами согласен",
-  "already_account": "Уже есть аккаунт?"
+  "already_account": "Уже есть аккаунт?",
+  "error": "Помилка"
 }
