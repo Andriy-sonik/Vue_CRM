@@ -42,6 +42,11 @@ export default {
     HistoryTable
   },
   mixins: [paginationMixin],
+  metaInfo() {
+    return {
+      title: this.$title("Menu_History")
+    };
+  },
   data() {
     return {
       loading: true,

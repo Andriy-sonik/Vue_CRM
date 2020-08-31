@@ -96,6 +96,11 @@ import { required, minValue } from "vuelidate/lib/validators";
 import localizeFilter from "../filters/localize.filter";
 export default {
   name: "Record",
+  metaInfo() {
+    return {
+      title: this.$title("Menu_NewRecord")
+    };
+  },
   data() {
     return {
       loading: true,
