@@ -13,9 +13,6 @@
     </p>
     <section v-else>
       <div v-for="cat of categories" :key="cat.id">
-        <pre>
-            {{cat.tooltip}}
-          </pre>
         <p>
           <strong>{{ cat.title }}:</strong>
           {{ cat.spend | currency("RUB") }} из {{ cat.limit | currency("RUB") }}
